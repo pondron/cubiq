@@ -8,6 +8,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
         <link rel="stylesheet" href="./cubiq.css" type="text/css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"
         integrity="sha512-zhHQR0/H5SEBL3Wn6yYSaTTZej12z0hVZKOv3TwCUXT1z5qeqGcXJLLrbERYRScEDDpYIJhPC1fk31gqR783iQ=="
         crossorigin="anonymous" defer>
@@ -15,13 +18,19 @@
         <script src="cubiq.js" defer></script>
     </head>
     <body>
-        <section class="hero">
-            <div class="hero-body has-text-centered">
-                <p class="title">
-                CUBIQ
-                </p>
-                <canvas id="glcanvas" width="640" height="480"></canvas>
-            </div>
-          </section>
+        <div id="app"></div>
+        <!-- <div id="back" class="has-text-centered">
+            <section class="hero">
+                <div class="hero-body has-text-centered">
+                    <p class="title">
+                    CUBIQ
+                    </p>
+                </div>
+            </section>
+            <div id="app"></div>
+
+            <canvas id="glcanvas" width="640" height="480"></canvas>
+        </div> -->
+
     </body>
 </html>
