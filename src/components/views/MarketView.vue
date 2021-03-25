@@ -1,16 +1,25 @@
 <template>
-    <section class="hero">
-        <div class="hero-body">
-            <p class="title">
-            We Marketing Yall
-            </p>
-            <p class="subtitle">
-            We Marketing Yall
-            </p>
+    <section class="hero has-bg-img">
+        <div class="hero-head">
+            <Header/>
         </div>
-        <canvas id="glcanvas" width="640" height="480"></canvas>
+        <div class="hero-body">
+            <p>we marketing yall</p>
+        </div>    
+        <div class="hero-foot">
+            <Footer/>
+        </div>
     </section>  
 </template>
 
 <script>
+import Header       from '@/components/Header.vue'
+import Footer       from '@/components/Footer.vue'
+
+export default {
+  components: {
+    Header,
+    Footer
+  }
+}
 </script>
