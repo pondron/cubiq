@@ -7,7 +7,7 @@ import MarketView from '@/components/views/MarketView.vue'
 Vue.use(Router)
 
 export default new Router({
-    mode: 'history',
+    // mode: 'history',
     base: '/',
     routes: [
         {
@@ -21,6 +21,6 @@ export default new Router({
             name: 'market',
             props: true,
             component: MarketView,
-        }
+        },
     ]
 })

@@ -26,3 +26,7 @@ npm run test
 ```
 npm run lint
 ```
+
+
+TODO: 
+- Figure out linting
