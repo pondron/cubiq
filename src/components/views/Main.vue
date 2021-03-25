@@ -3,9 +3,7 @@
         <div class="hero-head">
             <Header/>
         </div>
-        <div class="hero-body">
-            <p>we marketing yall</p>
-        </div>    
+        <Cubiq/>
         <div class="hero-foot">
             <Footer/>
         </div>
@@ -14,12 +12,14 @@
 
 <script>
 import Header       from '@/components/Header.vue'
+import Cubiq        from '@/components/views/Cubiq.vue'
 import Footer       from '@/components/Footer.vue'
 
 export default {
   components: {
     Header,
-    Footer
+    Cubiq,
+    Footer,
   }
 }
 </script>

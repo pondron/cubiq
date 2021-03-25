@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import CubiqView from '@/components/views/CubiqView.vue'
-import MarketView from '@/components/views/MarketView.vue'
+import Main from '@/components/views/Main.vue'
+import Market from '@/components/views/Market.vue'
 
 Vue.use(Router)
 
@@ -14,13 +14,13 @@ export default new Router({
             path: '/',
             name: 'cubiq',
             props: true,
-            component: CubiqView,
+            component: Main,
         },
         {
             path: '/market',
             name: 'market',
             props: true,
-            component: MarketView,
+            component: Market,
         },
     ]
 })

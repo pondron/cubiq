@@ -3,7 +3,9 @@
         <div class="hero-head">
             <Header/>
         </div>
-        <canvas id="glcanvas" width="640" height="480"></canvas>
+        <div class="hero">
+            <p>we marketing yall</p>
+        </div>    
         <div class="hero-foot">
             <Footer/>
         </div>

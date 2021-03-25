@@ -1,9 +1,6 @@
 var cubeRotation = 0.0;
 
 var copyVideo = false;
-
-main();
-
 //
 // Start here
 //
@@ -629,3 +626,5 @@ function loadShader(gl, type, source) {
 
   return shader;
 }
+
+main();
