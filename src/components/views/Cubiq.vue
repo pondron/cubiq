@@ -4,19 +4,20 @@
 
 <script>
 import GLMat       from '../../assets/gl-matrix.js'
+import { mapState } from 'vuex'
 
 export default {
   data () {
     return {
-      cubeRotation: 0.0,
-      copyVideo: false, 
     }
   },
+  computed: mapState(['cubiq']),
   mounted() {
     this.runWebGL()
   },
   methods: {
       runWebGL() {
+          let copyVideo = false;
           const canvas = document.querySelector('#glcanvas');
             const gl = canvas.getContext('webgl');
 
@@ -102,22 +103,47 @@ export default {
 
             const texture = this.initTexture(gl);
 
-            const video = this.setupVideo('images/aku.mp4');
+            // const video = this.setupVideo('images/aku.mp4');
             // const texture = loadTexture(gl, 'images/aku.png');
+            const video = document.createElement('video');
+            var playing = false;
+            var timeupdate = false;
+
+            video.autoplay = true;
+            video.muted = true;
+            video.loop = true;
+
+            video.addEventListener('playing', function() {
+                playing = true;
+                if (playing && timeupdate) {
+                    copyVideo = true;
+                } 
+            }, true);
+
+            video.addEventListener('timeupdate', function() {
+                timeupdate = true;
+                if (playing && timeupdate) {
+                    copyVideo = true;
+                } 
+            }, true);
+
+            video.src = 'images/aku.mp4';
+            video.play();
 
             var then = 0;
 
+            let thisy = this;
             // Draw the scene repeatedly
             function render(now) {
                 now *= 0.0005;  // convert to seconds
                 const deltaTime = now - then;
                 then = now;
 
-                if (this.$data.copyVideo) {
-                    this.updateTexture(gl, texture, video);
+                if (copyVideo) {
+                    thisy.updateTexture(gl, texture, video);
                 }
 
-                this.drawScene(gl, programInfo, buffers, texture, deltaTime);
+                thisy.drawScene(gl, programInfo, buffers, texture, deltaTime);
 
                 requestAnimationFrame(render);
             }
@@ -364,37 +390,6 @@ export default {
 
         return texture;  
     },
-    setupVideo(url) {
-        const video = document.createElement('video');
-
-        var playing = false;
-        var timeupdate = false;
-
-        video.autoplay = true;
-        video.muted = true;
-        video.loop = true;
-
-        video.addEventListener('playing', function() {
-            playing = true;
-            checkReady();
-        }, true);
-
-        video.addEventListener('timeupdate', function() {
-            timeupdate = true;
-            checkReady();
-        }, true);
-
-        video.src = url;
-        video.play();
-
-        function checkReady() {
-            if (playing && timeupdate) {
-                this.$data.copyVideo = true;
-            }
-        }
-
-        return video;
-    },
     updateTexture(gl, texture, video) {
         const level = 0;
         const internalFormat = gl.RGBA;
@@ -405,6 +400,8 @@ export default {
                         srcFormat, srcType, video);
     },
     drawScene(gl, programInfo, buffers, texture, deltaTime) {
+        let rot = this.$store.getters['cubiq/cubeRotation'];
+        console.log("I AM ROT: ", rot);
         gl.clearColor(0.0, 0.0, 0.0, 0.0);  // Clear to black, fully opaque
         gl.clearDepth(1.0);                 // Clear everything
         gl.enable(gl.DEPTH_TEST);           // Enable depth testing
@@ -447,11 +444,11 @@ export default {
                         [-0.0, 0.0, -5.0]);  // amount to translate
         GLMat.mat4.rotate(modelViewMatrix,  // destination matrix
                     modelViewMatrix,  // matrix to rotate
-                    this.cubeRotation,     // amount to rotate in radians
+                    rot,     // amount to rotate in radians
                     [0, 0, 1]);       // axis to rotate around (Z)
         GLMat.mat4.rotate(modelViewMatrix,  // destination matrix
                     modelViewMatrix,  // matrix to rotate
-                    this.cubeRotation * .7,// amount to rotate in radians
+                    rot * .7,// amount to rotate in radians
                     [0, 1, 0]);       // axis to rotate around (X)
 
         const normalMatrix = GLMat.mat4.create();
@@ -559,8 +556,8 @@ export default {
         }
 
         // Update the rotation for the next draw
-
-        this.cubeRotation += deltaTime;
+        this.$store.commit('cubiq/addRotationTime', deltaTime)
+        // this.cubeRotation += deltaTime;
     }
   }
 }
