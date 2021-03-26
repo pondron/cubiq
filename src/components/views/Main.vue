@@ -4,6 +4,9 @@
             <Header/>
         </div>
         <Cubiq/>
+        <div>
+          <ToolBar/>
+        </div>
         <div class="hero-foot">
             <Footer/>
         </div>
@@ -13,12 +16,14 @@
 <script>
 import Header       from '@/components/Header.vue'
 import Cubiq        from '@/components/views/Cubiq.vue'
+import ToolBar       from '@/components/views/ToolBar.vue'
 import Footer       from '@/components/Footer.vue'
 
 export default {
   components: {
     Header,
     Cubiq,
+    ToolBar,
     Footer,
   }
 }

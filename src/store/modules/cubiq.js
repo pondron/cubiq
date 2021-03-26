@@ -24,11 +24,14 @@ const state = () => (
       state.copyVideo = data.copyVideo
     },
     addRotationTime(state, time) {
-        console.log("LOOOKKKK AT MEEE: ", time)
         state.cubeRotation += time;
     },
     flipCopyVideo(state) {
         state.copyVideo = !state.copyVideo
+    },
+    setRotation(state, rot) {
+      let r = parseFloat("0." + rot);
+      state.cubeRotation = r
     }
   }
   

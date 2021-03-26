@@ -401,7 +401,6 @@ export default {
     },
     drawScene(gl, programInfo, buffers, texture, deltaTime) {
         let rot = this.$store.getters['cubiq/cubeRotation'];
-        console.log("I AM ROT: ", rot);
         gl.clearColor(0.0, 0.0, 0.0, 0.0);  // Clear to black, fully opaque
         gl.clearDepth(1.0);                 // Clear everything
         gl.enable(gl.DEPTH_TEST);           // Enable depth testing
@@ -545,7 +544,7 @@ export default {
         // Bind the texture to texture unit 0
         gl.bindTexture(gl.TEXTURE_2D, texture);
 
-        // Tell the shader we bound the texture to texture unit 0
+        // Tell the shader we bound the texture to texture  0
         gl.uniform1i(programInfo.uniformLocations.uSampler, 0);
 
         {
